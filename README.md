@@ -1,12 +1,12 @@
 # Introduction
 
-NoSQL databases are not a direct replacement for an relational database management system (RDBMS).  
+NoSQL databases are not a direct replacement for a relational database management system (RDBMS).  
 
 If you like to learn more about data modeling in SQL([My data modeling project using PostgreSQL](https://github.com/dar1enyang/Data-Modeling-PostgreSQL))
 
 For the following needs, NoSQL is a better match than an RDBMS.
 
-+ **Need high Availability in the data**: Indicates the system is always up and there is no downtime
++ **Need High Availability in the data**: Indicates the system is always up and there is no downtime
 + **Have Large Amounts of Data**
 + **Need Linear Scalability**: The need to add more nodes to the system so performance will increase linearly
 + **Low Latency**: Shorter delay before the data is transferred once the instruction for the transfer has been received.
@@ -47,7 +47,7 @@ Throughout this project, I have completed the following tasks:
 
 # Explore the dataset
 
-For this project, you'll be working with one dataset: `event_data`. The directory of CSV files partitioned by date. Here are examples of filepaths to two files in the dataset:
+For this project, you'll be working with one dataset: `event_data`. The directory of CSV files partitioned by date. Here are examples of file paths to two files in the dataset:
 
 ```txt
 event_data/2018-11-08-events.csv
@@ -63,8 +63,8 @@ I extracted the following features(11 total):
 - artist 
 - firstName of user
 - gender of user
-- item number in session
-- last name of user
+- item number in the session
+- last name of the user
 - length of the song
 - level (paid or free song)
 - location of the user
