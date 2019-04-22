@@ -91,29 +91,32 @@ In order to answer the proposed questions, following three tables were created:
 
    + Give the artist, song title and song's length in the music app history that was heard during  a specific session
 
-   + **Partition Keys: (sessionId, itemInSession)**
 <p align="center">
+  <br>Partition Keys: (sessionId, itemInSession) <br>
     <img src="https://ws2.sinaimg.cn/large/006tNc79ly1g2bvj1de8dj304r03ea9y.jpg" />
 </p>   
+
 
 2. user_acitivity
 
    + Give the artist, song title(sorted by itemInSession) and user info based on the specific userid and session
 
-   + **Partition Keys: (userId, sessionId) / Clustering Column: itemInSession **
 <p align="center">
+  <br>Partition Keys: (userId, sessionId) / Clustering Column: itemInSession <br>
     <img src="https://ws3.sinaimg.cn/large/006tNc79ly1g2bvjbg53fj304x044aa0.jpg" />
 </p>
+
 
 
 3. user_history
 
    + Give every user info in the music app history who listened to a specific song
 
-   + **Partition Keys: (song, userId) **
 <p align="center">
+  <br>Partition Keys: (song, userId) <br>
     <img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2bvjgmv7sj304p02tjr9.jpg" />
 </p>
+
 
 
 
