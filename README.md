@@ -40,10 +40,10 @@ Throughout this project, I have completed the following tasks:
 
 # Technology 
 
-<p align="middle">
-  <img height="230" width="300" src="https://ws3.sinaimg.cn/large/006tNc79ly1g2btcxl58xj318r0u0tgv.jpg" />
-  <img   src="https://ws2.sinaimg.cn/large/006tNc79ly1g2bsv06jf3j30gp05njtd.jpg" />
-<p>
+
+<img height="230" width="300" src="https://ws3.sinaimg.cn/large/006tNc79ly1g2btcxl58xj318r0u0tgv.jpg" />
+<img   src="https://ws2.sinaimg.cn/large/006tNc79ly1g2bsv06jf3j30gp05njtd.jpg" />
+
 
 # Explore the dataset
 
