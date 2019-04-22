@@ -91,7 +91,7 @@ In order to answer the proposed questions, following three tables were created:
 
    + Give the artist, song title and song's length in the music app history that was heard during  a specific session
 
-   + **Partition Keys: (sessionId, itemInSession) **
+   + **Partition Keys: (sessionId, itemInSession)**
 <p align="center">
     <img src="https://ws2.sinaimg.cn/large/006tNc79ly1g2bvj1de8dj304r03ea9y.jpg" />
 </p>   
