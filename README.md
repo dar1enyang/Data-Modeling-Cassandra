@@ -24,6 +24,8 @@ The analytics people are particularly interested in understanding the following 
 
 Currently, there is no easy way to query the data to generate the results, since the data reside in a directory of CSV files on user activity on the app.
 
+
+
 # Project Objective
 
 Design and structure data to make it available to the others in the team. So they can make use of it easily.
@@ -34,6 +36,8 @@ Throughout this project, I have completed the following tasks:
 2. Minimized partition reads by modeling the data to fit target queries
 3. Built an ETL pipeline that transfers data from a set of CSV files within a directory to create a streamlined CSV file to model and insert data into Apache Cassandra tables.
 
+
+
 # Technology 
 
 <p align="middle">
@@ -41,67 +45,85 @@ Throughout this project, I have completed the following tasks:
   <img img  src="https://ws2.sinaimg.cn/large/006tNc79ly1g2bsv06jf3j30gp05njtd.jpg" />
 
 
+# Explore the dataset
 
-
-# Explore the datasets
-
-##### 1. Song Dataset
-
-The first dataset is in JSON format and contains metadata about a song and the artist of that song. The files are partitioned by the first three letters of each song's track ID. For example, here are filepaths to two files in this dataset.
+For this project, you'll be working with one dataset: `event_data`. The directory of CSV files partitioned by date. Here are examples of filepaths to two files in the dataset:
 
 ```txt
-song_data/A/B/C/TRABCEI128F424C983.json
-song_data/A/A/B/TRAABJL12903CDCF1A.json
+event_data/2018-11-08-events.csv
+event_data/2018-11-09-events.csv
 ```
 
-And below is an example of what a single song file, TRAABJL12903CDCF1A.json, looks like.
+Below is the screenshot of `2018-11-01-events.csv`:
 
-```json
-{"num_songs": 1, 
- "artist_id": "ARJIE2Y1187B994AB7", 
- "artist_latitude": null, 
- "artist_longitude": null, 
- "artist_location": "", 
- "artist_name": "Line Renaud", 
- "song_id": "SOUPIRU12A6D4FA1E1", 
- "title": "Der Kleine Dompfaff", 
- "duration": 152.92036, 
- "year": 0}
-```
+![](https://ws3.sinaimg.cn/large/006tNc79ly1g2bv8lpy9dj32260iehas.jpg)
 
-##### 2. Log Dataset
+I extracted the following features(11 total): 
 
-The second dataset consists of log files in JSON format. These describe app activity logs from a music streaming app based on specified configurations.
+- artist 
+- firstName of user
+- gender of user
+- item number in session
+- last name of user
+- length of the song
+- level (paid or free song)
+- location of the user
+- sessionId
+- song title
+- userId
 
-The log files in the dataset are partitioned by year and month. 
+The image below is a screenshot of what the denormalized data  appear like: 
 
-For example, here are filepaths to two files in this dataset.
+![](https://ws3.sinaimg.cn/large/006tNc79ly1g2bv4vvcl7j319i0enajs.jpg)
 
-```txt
-log_data/2018/11/2018-11-12-events.json
-log_data/2018/11/2018-11-13-events.json
-```
 
-And below is an example of what the data in a log file, 2018-11-12-events.json, looks like.
-
-![](https://ws3.sinaimg.cn/large/006tNc79ly1g2bsvkkb18j316d0cstbp.jpg)
 
 # Methodology 
 
-### Star Schema Design - Optimized for queries on song play analysis
+### Schema Design - Minimized partition reads by modeling the data to fit target queries
 
-![](https://ws2.sinaimg.cn/large/006tNc79ly1g2bsvrjxy1j30hg0c2aax.jpg)
+## Schema Design
+The special thing in schema designing in Apache Cassandra is to 'think queries first'.
+
+In order to answer the proposed questions, following three tables were created: 
+
+1. session_info
+
+   + Give the artist, song title and song's length in the music app history that was heard during  a specific session
+
+   + **Partition Keys: (sessionId, itemInSession) **
+
+     ![](https://ws2.sinaimg.cn/large/006tNc79ly1g2bvj1de8dj304r03ea9y.jpg)
+
+2. user_acitivity
+
+   + Give the artist, song title(sorted by itemInSession) and user info based on the specific userid and session
+
+   + **Partition Keys: (userId, sessionId) / Clustering Column: itemInSession **
+
+     ![](https://ws3.sinaimg.cn/large/006tNc79ly1g2bvjbg53fj304x044aa0.jpg)
+
+3. user_history
+
+   + Give every user info in the music app history who listened to a specific song
+
+   + **Partition Keys: (song, userId) **
+
+     ![](https://ws4.sinaimg.cn/large/006tNc79ly1g2bvjgmv7sj304p02tjr9.jpg)
 
 
 
 # How to use this project
 
-How to install and set up Postgres locally in case you want to follow along with the project on your local machine. This [link](https://www.codementor.io/engineerapart/getting-started-with-postgresql-on-mac-osx-are8jcopb) provides it for MacOs. It goes through configuring Postgres, creating users, creating databases using the psql utility.
+In order to run this project locally, please follow the documentation.
 
-Perform ETL development in `etl.ipynb` and `test.ipynb`
+**Installing Apache Cassandra to run locally on your machine:**
+[Cassandra Documentation](http://cassandra.apache.org/doc/latest/getting_started/installing.html)
+
+Perform ETL development in `etl.ipynb` and `validate_tables.ipynb`
 
 1. Run `create_tables.py` to create database and tables 
 
-   (Alter queries if you want in `sql_queries.py`)
+   (Alter queries if you want in `nosql_queries.py`)
 
 2. Run `etl.py` to perform the complete ETL pipeline
