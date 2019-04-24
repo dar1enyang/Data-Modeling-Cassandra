@@ -128,10 +128,24 @@ In order to run this project locally, please follow the documentation.
 **Installing Apache Cassandra to run locally on your machine:**
 [Cassandra Documentation](http://cassandra.apache.org/doc/latest/getting_started/installing.html)
 
-Perform ETL development in `etl.ipynb` and `validate_tables.ipynb`
+## Go Directories
 
-1. Run `create_tables.py` to create database and tables 
+### `/func`
 
-   (Alter queries if you want in `nosql_queries.py`)
+Main applications for this project
 
-2. Run `etl.py` to perform the complete ETL pipeline
+Performed ETL development in `etl.ipynb` and `validate_tables.ipynb`
+
+### `/query`
+
+All queries for this project
+
+### `/data`
+
+All data for this project
+
+1. Run `func/create_tables.py` to create database and tables 
+
+   (Alter queries if you want in `query/nosql_queries.py`)
+
+2. Run `func/etl.py` to perform the complete ETL pipeline
