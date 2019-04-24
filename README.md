@@ -117,17 +117,7 @@ In order to answer the proposed questions, following three tables were created:
 </p>
 
 
-
-
-
-# How to use this project
-
-In order to run this project locally, please follow the documentation.
-
-**Installing Apache Cassandra to run locally on your machine:**
-[Cassandra Documentation](http://cassandra.apache.org/doc/latest/getting_started/installing.html)
-
-## Go Directories
+# Go Directories
 
 ### `/func`
 
@@ -142,6 +132,14 @@ All queries for this project
 ### `/data`
 
 All data for this project
+
+
+# How to use this project
+
+In order to run this project locally, please follow the documentation.
+
+**Installing Apache Cassandra to run locally on your machine:**
+[Cassandra Documentation](http://cassandra.apache.org/doc/latest/getting_started/installing.html)
 
 1. Run `func/create_tables.py` to create database and tables 
 
